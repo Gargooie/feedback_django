@@ -1,0 +1,43 @@
+{% extends "reviews/base.html" %}
+{% load static %}
+
+{% block title %}Your Review{% endblock %}
+
+
+{% block content %}
+<form action="/" method="POST">
+    {% csrf_token %}
+
+{#    old no django validation#}
+{#    {% if has_error %}#}
+{#        <p>This form is invalid</p>#}
+{#    {% endif %}#}
+
+{# old no django form#}
+{#    <label for="username">Your name</label>#}
+{#    <input id="username" name="username" type="text">#}
+
+{% for field in form %}
+    <div class="form-control {% if field.errors %}errors{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+    </div>
+{% endfor %}
+
+{#    no loop form fields#}
+{#        <div class="form-control {% if form.review_text.errors %}errors{% endif %}">#}
+{#            {{ form.review_text.label_tag }}#}
+{#            {{ form.review_text }}#}
+{#            {{ form.review_text.errors }}#}
+{#        </div>#}
+{#        <div class="form-control {% if form.rating.errors %}errors{% endif %}">#}
+{#            {{ form.rating.label_tag }}#}
+{#            {{ form.rating }}#}
+{#            {{ form.rating.errors }}#}
+{#        </div>#}
+
+    <button type="submit">Send</button>
+</form>
+
+{% endblock %}
